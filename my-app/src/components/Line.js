@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     line: {
         borderBottomWidth: 1,
         borderBottomColor: '#000',
-        marginBottom: 10,
-        marginTop: 10,
-        width: '100%'
+        marginBottom: 15,
+        marginTop: 15,
+        width: '100%',
     }
 });

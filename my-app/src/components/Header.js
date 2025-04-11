@@ -12,6 +12,6 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'sans-serif',
         fontSize: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     }
 });

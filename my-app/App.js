@@ -1,47 +1,39 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { useState } from 'react';
 
 import Header from './src/components/Header';
-import { nome, telefone } from './src/components/Label';
-
-import Input from './src/components/Input';
-import Submit from './src/components/Submit';
+import Form from './src/components/Form';
 
 import Line from './src/components/Line';
+import List from './src/components/List';
 
 export default function App() {
+  const [nomes, setNomes] = useState('');
+  const [telefones, setTelefones] = useState('');
+  const [lista, setLista] = useState([]);
+
+  const registrarDados = () => {
+    if (nomes.trim() === '' || telefones.trim() === '') return;
+    setLista([...lista, { nomes, telefones }]);
+
+    setNomes('');
+    setTelefones('');
+  };
+
   return (
     <View style={styles.container}>
       <Header />
 
-      <View style={styles.form}>
-        <View style={styles.inputgroup}>
-          <Text style={styles.label}>{nome}</Text>
+      <Form
+        nomes={nomes}
+        setNomes={setNomes}
+        telefones={telefones}
+        setTelefones={setTelefones}
+        registrarDados={registrarDados}
+      />
 
-          <View style={styles.input}>
-            <Input />
-          </View>
-        </View>
-
-        <View style={styles.inputgroup}>
-          <Text style={styles.label}>{telefone}</Text>
-
-          <View style={styles.input}>
-            <Input />
-          </View>
-        </View>
-
-        <View style={styles.inputgroup}>
-          <Text style={styles.label}></Text>
-
-          <View style={styles.input}>
-            <Submit />
-          </View>
-        </View>
-      </View>
-
-      <View>
-        <Line />
-      </View>
+      <Line />
+      <List lista={lista} />
     </View>
   );
 }
@@ -50,29 +42,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex: 1,
-    padding: 20
-  }, 
-
-  form: {
-    marginRight: '5%',
-    marginTop: 20
+    padding: 20,
   },
-
-  inputgroup: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginBottom: 7,
-  },
-
-  label: {
-    fontFamily: 'sans-serif',
-    fontSize: 13,
-    fontWeight: 'bold',
-    width: 80
-  },
-
-  input: {
-    flex: 1,
-    width: '100%'
-  },  
 });
